@@ -1,55 +1,9 @@
-import { useState, useEffect } from 'react'
 import './index.css'
+import { useTypewriter } from './utils/use-typewriter'
+import { typewriterText, skills, projects, socials } from './utils/constants'
 
 export default function FutureGadgetLab() {
-  const [displayedText, setDisplayedText] = useState('')
-  const [textIndex, setTextIndex] = useState(0)
-  const [charIndex, setCharIndex] = useState(0)
-
-  useEffect(() => {
-    const currentString = typewriterText[textIndex]
-    if (charIndex < currentString.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText(prev => prev + currentString[charIndex])
-        setCharIndex(prev => prev + 1)
-      }, 75)
-      return () => clearTimeout(timeout)
-    } else {
-      const pause = setTimeout(() => {
-        setDisplayedText('')
-        setCharIndex(0)
-        setTextIndex(prev => (prev + 1) % typewriterText.length)
-      }, 2000)
-      return () => clearTimeout(pause)
-    }
-  }, [charIndex, textIndex])
-
-  const skills = {
-    "Time Travel": {
-      "Monday": "30s",
-      "Weekend": "22s",
-      "Equipment": "9ts"
-    },
-    "Programming": {
-      "Frontend": "30s",
-      "Backend": "7ds",
-      "Administrator": "8ds"
-    }
-  }
-
-  const projects = [
-    { id: 1, title: "Project 1", description: "World line alteration device" },
-    { id: 2, title: "Project 2", description: "World line alteration device" },
-    { id: 3, title: "Project 3", description: "World line alteration device" },
-    { id: 4, title: "Project 4", description: "World line alteration device" }
-  ]
-
-  const typewriterText = [
-    '> Welcome to my world line...',
-    "> I'm a mad scientist...",
-    '> The Organization watches...',
-    '> El Psy Kongroo...'
-  ]
+  const displayedText = useTypewriter(typewriterText)
 
   return (
     <div className="crt-effect min-h-screen bg-[#0a0a12] text-gray-200 font-mono relative overflow-hidden">
@@ -97,7 +51,9 @@ export default function FutureGadgetLab() {
               <h2 className="text-2xl text-[#ff00c3] mb-4 border-b border-[#a100f2] pb-2 text-shadow-glow">
                 Kurisu's Skills
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-6" style={{
+                animation: 'float 3s ease-in-out infinite, pulse 5s ease-in-out infinite'
+              }}>
                 {Object.entries(skills).map(([category, skillset]) => (
                   <div key={category} className="bg-black/30 p-4 rounded">
                     <h3 className="text-xl text-[#a100f2] mb-2">{category}</h3>
@@ -113,6 +69,25 @@ export default function FutureGadgetLab() {
                 ))}
               </div>
             </section>
+
+            <section className="mt-8">
+              <h2 className="text-2xl text-[#ff00c3] mb-4 border-b border-[#a100f2] pb-2 text-shadow-glow">
+                Find me on
+              </h2>
+              <div className="flex space-x-6">
+                {socials.map(({ icon: Icon, href }, index) => (
+                  <a
+                    key={index}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#ff00c3] hover:text-[#a100f2] transition-colors"
+                  >
+                    <Icon size={30} />
+                  </a>
+                ))}
+              </div>
+            </section>
           </div>
 
           {/* Right Column */}
@@ -122,13 +97,17 @@ export default function FutureGadgetLab() {
               <h2 className="text-2xl text-[#ff00c3] mb-4 border-b border-[#a100f2] pb-2 text-shadow-glow">
                 Kurisu's Gadgets
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" style={{
+                animation: 'float 3s ease-in-out infinite, pulse 5s ease-in-out infinite'
+              }}>
                 {projects.map(project => (
                   <div key={project.id} className="border-2 border-[#5d00a3] p-4 hover:border-[#ff00c3] hover:shadow-[0_0_15px_#ff00c3] transition-all crt-glow-hover">
                     <h3 className="text-xl text-[#a100f2] mb-2">{project.title}</h3>
                     <p className="mb-3">{project.description}</p>
-                    <button className="px-3 py-1 bg-[#5d00a3] hover:bg-[#ff00c3] hover:shadow-[0_0_10px_#ff00c3] transition-all text-sm">
-                      View Experiment
+                    <button
+                      className="w-8 h-8 flex items-center justify-center border border-[#a100f2] text-[#a100f2] hover:border-[#ff00c3] hover:text-[#ff00c3] transition-all rounded-md"
+                    >
+                      →
                     </button>
                   </div>
                 ))}
