@@ -13,7 +13,8 @@ Kurisu Laboratory is a showcase of my skills, projects, and interests, wrapped i
 ## 🔗 Connect  
 You can find me on:  
 - GitHub: [github.com/Dadalober](https://github.com/Dadalober)  
-- Email: [johnmillerlorenzo@gmail.com](mailto:johnmillerlorenzo@gmail.com)  
+- Email: [Email me](mailto:johnmillerlorenzo@gmail.com?subject=Inquiry&body=Hello%20Kurisu%20Laboratory%2C%0A%0AI%20wanted%20to%20get%20in%20touch...)
+
 
 ---  
 *"The universe has a beginning, but it has no end. — Steins;Gate"*  
